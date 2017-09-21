@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,12 +38,14 @@ public class CategoriaResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Categoria> criar(@RequestBody Categoria categoria, HttpServletResponse response) {
+	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response) {
 		Categoria categoriaSalva = categoriaRepository.save(categoria);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
 			.buildAndExpand(categoriaSalva.getCodigo()).toUri();
-		//desta forma já passo o ststus 201 created
+		
+		response.setHeader("Location", uri.toASCIIString());
+		//desta forma já passa o ststus 201 created
 		return ResponseEntity.created(uri).body(categoriaSalva);
 	}
 	//recebendo uma nova categoria
