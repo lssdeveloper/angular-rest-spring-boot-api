@@ -2,6 +2,21 @@
 
 É uma forma de integrarmos sistemas.
 
+Acrônimo de transferencia de estado representacional
+E no caso ele é um modelo de arquitetura, ele não é uma tecnologia que está pronta para ser baixada, 
+não é um framework, enfim. 
+
+### Vantagens
+
+Deixa a aplicação mais simples devido a sua organização arquitetural
+Evolução do software incremental, ou seja, sem quebrar aquilo que já existe.
+Alta escalabilidade
+
+#### REST X RESTFul
+
+REST é o modelo arquitetural, ou seja, toda a sua teoria baseada na arquitetura em si.(Todo um conceito)
+ResftFul é a implementação da arquitetura, é apenas uma sutil difrerença.(Prática desse conceito)
+
 ### Traduzindo, Cenário
 
 Dois sistemas diferentes e precisa integrá-los
