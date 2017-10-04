@@ -68,15 +68,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	
 	@Bean
 	public TokenStore tokenStore() {
+
+		//Aqui poderia ser armazenado também em um banco de dados
 		return new InMemoryTokenStore();
 	}
 ```
-```java
-@Bean
-public Tokenstore tokenStore(){
-    return new InMemoryTokenStore(); //Aqui poderia ser armazenado também em um banco de dados
-}
-```
+
 ```AuthorizationServerConfig.java
 
 Configuração:
