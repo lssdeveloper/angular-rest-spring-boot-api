@@ -1,7 +1,5 @@
 # Profiles do Spring
 
-**Essas Alterações só serão, observadas, utilizadas quando subirem para o Heroku**
-
 *Show View / Tasks - Exibe tudo que está como TODO*
 
 *Profiles (Perfis) são configurações externas para dois ambientes (produção e desenvolvimento)*
