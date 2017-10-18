@@ -19,7 +19,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import com.lssdeveloper.money.api.config.token.CustomTokenEnhancer;
 
-
+@Profile("oauth-security")
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
