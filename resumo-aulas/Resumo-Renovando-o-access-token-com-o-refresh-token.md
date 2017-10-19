@@ -37,3 +37,4 @@ sem ter que pedir usuaŕio e senha novamente do usuário.
 			.authenticationManager(authenticationManager);
 	}
 ```	
+
