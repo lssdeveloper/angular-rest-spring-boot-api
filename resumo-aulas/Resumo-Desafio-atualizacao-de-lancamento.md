@@ -1,31 +1,24 @@
-package com.lssdeveloper.money.api.service;
+# Atualização de lançamento
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+```java
+LancamentoResource.java	
 
-import com.lssdeveloper.money.api.model.Lancamento;
-import com.lssdeveloper.money.api.model.Pessoa;
-import com.lssdeveloper.money.api.repository.LancamentoRepository;
-import com.lssdeveloper.money.api.repository.PessoaRepository;
-import com.lssdeveloper.money.api.service.exception.PessoaInexistenteOuInativaException;
-
-@Service
-public class LancamentoService {
-	
-	@Autowired
-	private PessoaRepository pessoaRepository;
-	
-	@Autowired
-	private LancamentoRepository lancamentoRepository;
-
-	public Lancamento salvar(Lancamento lancamento) {
-		Pessoa pessoa = pessoaRepository.findOne(lancamento.getPessoa().getCodigo());
-		if(pessoa == null || pessoa.isInativo()) {
-			throw new PessoaInexistenteOuInativaException();
+	//Atualizando o Lançamento
+	@PutMapping("/{codigo}")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO')")
+	public ResponseEntity<Lancamento> atualizar(@PathVariable Long codigo, @Valid @RequestBody Lancamento lancamento) {
+		//se for lançada uma exception o retorno será NOT FOUND
+		try {
+			Lancamento lancamentoSalvo = lancamentoService.atualizar(codigo, lancamento);
+			return ResponseEntity.ok(lancamentoSalvo);
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.notFound().build(); //NOT FOUND
 		}
-		return lancamentoRepository.save(lancamento) ;
 	}
+```
+
+```java
+LancamentoService.java
 
 	public Lancamento atualizar(Long codigo, Lancamento lancamento) {
 		Lancamento lancamentoSalvo = buscarLancamentoExistente(codigo);
@@ -58,5 +51,4 @@ public class LancamentoService {
 		}
 		return lancamentoSalvo;
 	} 
-	
-}
+```
